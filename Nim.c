@@ -18,7 +18,7 @@ void NIM_conv(NIM * rnim)
 
 // Performs any needed internal setup for class.
 // Touches: m_record, m_rowcnt, m_rows
-// Aline count = 5
+// Aline count = 3
 void NIM_setup(NIM * rnim)
 {
 	int i;	// For loop counter.
@@ -45,39 +45,31 @@ void NIM_hello(NIM * rnim)
 
 // Asks/gets the user/brain input.
 // Touches: m_record, m_row_select, m_pebble_select
-// Aline count = 10
+// Aline count = 8
 void NIM_listen(NIM * rnim)
 {
 	char line[10];	// Character array for user input.
-	int ax;	// Variable specifying user or brain for switch statement.
-
 	rnim->m_record++;	// Increment m_record by 1.  Even integer is brain and odd integer is user.
-	ax = rnim->m_record % 2;	// Modulus m_record to test if ax is 0.
 
-	switch (ax)
+	if (0 == rnim->m_record % 2)	// Modulus m_record to test if equal to 0.
 	{
-	case 0:	// For brain's turn.
+		NIM_brain_moves(rnim);	// Call function to handle brain move.
+	}
+	else  // User's turn.
+	{
+		do
 		{
-				NIM_brain_moves(rnim);	// Call function to handle brain move.
-		break;
-		}
-	default:	// For user's turn.
-		{
-			do
+			printf("\nPlease select row and pebble count to be removed: ");
+			fgets(line, sizeof(line), stdin);	// Get user input from stream and save to character array.
+			sscanf_s(line, "%d %d", &rnim->m_row_select, &rnim->m_pebble_select);	// Save user input to Nim row and pebble slot.
+
+			if (1 != NIM_is_valid_move(rnim))	// If the inputted selection is invalid.
 			{
-				printf("\nPlease select row and pebble count to be removed: ");
-				fgets(line, sizeof(line), stdin);	// Get user input from stream and save to character array.
-				sscanf_s(line, "%d %d", &rnim->m_row_select, &rnim->m_pebble_select);	// Save user input to Nim row and pebble slot.
+				printf("Please select non-empty row and a positive count!\n");
+			}
+		} while (0 == NIM_is_valid_move(rnim));	// Loop until inputted selection is valid.
 
-				if (1 != NIM_is_valid_move(rnim))	// If the inputted selection is invalid.
-				{
-					printf("Please select non-empty row and a positive count!\n");
-				}
-			} while (0 == NIM_is_valid_move(rnim));	// Loop until inputted selection is valid.
-
-			printf("You take %d pebbles from row %d\n", rnim->m_pebble_select, rnim->m_row_select);
-			break;
-		}
+		printf("You take %d pebbles from row %d\n", rnim->m_pebble_select, rnim->m_row_select);
 	}
 }
 
@@ -113,6 +105,7 @@ void NIM_cleanup(NIM * rnim)
 	if (0 != rnim->m_record % 2)
 	{
 		printf("Game has ended in %d rounds, You Win!\n", rnim->m_record);	// Print user as winner with round count.
+		NIM_write_score(rnim);
 	}
 	else
 	{
@@ -181,4 +174,23 @@ void NIM_calc_sum(NIM * rnim)
 	{
 		rnim->m_exit = 0;	// Set exit-flag to 0.
 	}
+}
+
+void NIM_write_score(NIM * rnim)
+{
+	FILE *pfout = fopen("Nim-scores.txt", "a");
+	do
+	{
+		if (!pfout)
+		{
+			printf("Cannot open file.\n");
+			break;
+		}
+
+		fprintf(pfout, "%d\n", rnim->m_record);
+	} while (0);
+	fclose(pfout);
+
+	if (pfout) printf("Wrote File.\n");
+	else printf("Open Failed.\n");
 }
