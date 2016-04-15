@@ -36,15 +36,23 @@ void GM_hello(GM * rgm)
 
 // Asks/gets the user input.
 // Touches: m_data
-// ALine count = 4
+// ALine count = 6
 void GM_listen(GM * rgm)
 {
-	char line[10];	// Character array for user input.
+	char line[5];	// Character array for user input.
 
 	GM_printmenu(rgm);	// Calls the function printmenu to print text menu.
 
-	fgets(line, sizeof(line), stdin);	// Get user input from stream and save to character array.
-	sscanf_s(line, "%d", &(rgm->m_data));	// Save user input to Game Manager int slot.
+	do
+	{
+		fgets(line, sizeof(line), stdin);	// Get user input from stream and save to character array.
+		if ('\0' != line[2])
+		{
+			printf("Please choose valid option: ");
+		}
+	} while ('\0' != line[2]);	// Loop until user input is 1 character.
+
+	sscanf(line, "%d", &(rgm->m_data));	// Save user input to Game Manager int slot.
 }
 
 // Does the needed processing for user input.

@@ -18,7 +18,7 @@ void GC_conv(GC * rgc)
 
 // Function to pick a random card between 1-52.
 // Touches: m_secret
-// ALine count = 2
+// ALine count = 1
 void GC_setup(GC * rgc)
 {
 	rgc->m_secret = rand() % 52 + 1;	// Set secret card with value between 1-52.
@@ -128,7 +128,7 @@ void GC_cvt_card_to_int(GC * rgc)
 
 // Convert user's card suit to an integer value.
 // Touches: m_guess, m_iguess
-// ALine count = 10
+// ALine count = 9
 void GC_cvt_suit_to_int(GC * rgc)
 {
 	if ('\0' != rgc->m_guess[3]) rgc->m_iguess = 0;	// Set guess integer slot to 0 if input is more than 2 characters.

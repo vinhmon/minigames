@@ -11,6 +11,9 @@ typedef struct tNim
 	int m_pebble_sum;	// The calculated sum of all pebbles on the board.
 	int m_exit;	// Slot for exit-game flag.
 	int m_record;	// Odd integer records user as playing, even integer records brain as playing.
+	char m_user_name[15];	// Array to hold user's name for file writing.
+	char m_file_name[15];	// Array to hold user's name with best score.
+	int m_file_score;	// The best integer score from text file.
 } NIM;	// Define NIM for Nim structure (tNim).
 
 // Function prototypes for Nim.
@@ -25,5 +28,7 @@ void NIM_print_board(NIM *);	// Displays the updated board.
 int NIM_is_valid_move(NIM *);	// Checks to see if user/brain selected row and pebble count is valid.
 void NIM_brain_moves(NIM *);	// Brain selects random row and random pebble count.
 void NIM_calc_sum(NIM *);	// Calculates the total sum of pebbles remaining on the board.
+void NIM_write_score(NIM *);	// Write the user's score and name to text file.
+void NIM_read_score(NIM *);	// Read text file and save the user's name with best score.
 
 #endif
