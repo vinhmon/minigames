@@ -40,9 +40,9 @@ void NIM_setup(NIM * rnim)
 // Aline count = 1
 void NIM_hello(NIM * rnim)
 {
-	printf("\nHello! This is the Nim(NIM) class.\n");
+	printf("\nHello! This is the Nim (NIM) class.\n");
 	printf("In order to win, be the last player to remove all the pebbles from the last non-empty row.\n");
-	printf("You can only remove pebbles for one row each turn.\n");
+	printf("You can only remove pebbles from one row each turn.\n");
 	printf("Select the row and pebble count by input of \"row_pebblecount\".\n\n");
 
 	NIM_print_board(rnim);	// Call print function to print updated board.
@@ -214,7 +214,7 @@ void NIM_read_score(NIM * rnim)
 	FILE *pfin = fopen("Nim-scores.txt", "r");	// Opens the text file in read mode.
 	char line[101];	// Character array to store line from text file.
 	int temp_score = 0;	// Temporary variable to hold score.
-	char temp_name[15];	// Temporary variable to hold user name.
+	char temp_name[KMAXSIZE];	// Temporary variable to hold user name.
 	rnim->m_file_score = 50;	// Initialize score to 50.
 
 	do

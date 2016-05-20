@@ -2,10 +2,10 @@
 #define _GM_H_
 
 // Structure/Pseudo-Class for Game Manager.
-typedef struct tGM
+typedef struct tGm
 {
 	int m_data;	// User choice saved to GM int slot.
-} GM;	// Define GM for Game Manager structure (tGM).
+} GM;	// Define GM for Game Manager structure (tGm).
 
 // Function prototypes for Game Manager.
 void GM_conv(GM *);	// The main user interaction function (conversation).

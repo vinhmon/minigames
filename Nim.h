@@ -1,18 +1,21 @@
 #ifndef _NIM_H_
 #define _NIM_H_
 
+#define KMAXSIZE		15	// Maximum string length for file read/write.
+#define KMAXROWS		5	// Maximum number of rows.
+
 // Structure/Pseudo-Class for Nim.
 typedef struct tNim
 {
 	int m_rowcnt;	// Number of rows that Nim selected.
-	int m_rows[5];	// Data structure array of ints to represent board.
+	int m_rows[KMAXROWS];	// Data structure array of ints to represent board.
 	int m_row_select;	// User/brain selection of row.
 	int m_pebble_select;	// User/brain selection of pebbles.
 	int m_pebble_sum;	// The calculated sum of all pebbles on the board.
 	int m_exit;	// Slot for exit-game flag.
 	int m_record;	// Odd integer records user as playing, even integer records brain as playing.
-	char m_user_name[15];	// Array to hold user's name for file writing.
-	char m_file_name[15];	// Array to hold user's name with best score.
+	char m_user_name[KMAXSIZE];	// Array to hold user's name for file writing.
+	char m_file_name[KMAXSIZE];	// Array to hold user's name with best score.
 	int m_file_score;	// The best integer score from text file.
 } NIM;	// Define NIM for Nim structure (tNim).
 

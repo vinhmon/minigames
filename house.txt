@@ -1,0 +1,21 @@
+Count: 10
+Room: Kitchen
+the main kitchen with a table, stove and a big unreachable knife.
+Room: Master_Bedroom
+a huge master bedroom containing a giant four-poster canopy bed.
+Room: Long_Hallway
+a long hallway with green vines and grapes figured into the wallpaper.
+Room: Den
+a den dimly lit room with dark walls and no windows.
+Room: Laundry_room
+a laundry room with many washing machines.
+Room: Guest_room
+a guest room that is big and has a strange distinct smell.
+Room: Bedroom
+a large bedroom with a very high ceiling.
+Room: Small_bedroom
+a normal small bedroom.
+Room: Living_room
+a living room where the television is still on.
+Room: Study_room
+a study room that is bright and loud.

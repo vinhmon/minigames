@@ -4,6 +4,7 @@
 #include "Gm.h"
 #include "Cg.h"
 #include "Nim.h"
+#include "Mh.h"
 
 // The main user interaction function (conversation).
 // ALine count = 6
@@ -75,6 +76,12 @@ void GM_respond(GM * rgm)
 			NIM_conv(&nx);	// Address of object nx passed to Nim conversation function.
 			break;
 		}
+	case 3:	// For Mystery House game.
+		{
+			MH mhx; // Creates a Mystery House object.
+			MH_conv(&mhx);	// Address of object mhx passed to Mystery House conversation function.
+			break;
+		}
 	case 0:	// For quitting.
 		{
 			printf("\nThanks for playing.\n\n");
@@ -111,5 +118,6 @@ void GM_printmenu(GM * rgm)
 	printf("\nPlease make your selection.\n");
 	printf("  1: Guess-a-Card Game\n");
 	printf("  2: Nim Game\n");
+	printf("  3: Mystery House Game\n");
 	printf("  0: Quit\n");
 }
